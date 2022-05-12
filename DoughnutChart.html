@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doughnut Chart</title>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+<h1> </h1>
+<body>
+    <div class = "container">
+        <canvas id = "myChart" width = '800' height = '450'></canvas>
+    </div>    
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        let Dchart = new  Chart(myChart, {
+            type: 'doughnut',
+            data: {
+                labels: ['Chloe', 'Olivia', 'Mia', 'Sophia', 'Emma', 'Amelia', 'Charlotte', 'Emily', 'Grace', 'Ava'],
+                datasets:[{
+                    label: 'Popular Baby Names (Girls)',
+                    backgroundColor: ["#e8c3b9", "#3cba9f", "#c45850", "yellow", "purple", "red", "blue", "green", "black", "magenta"],
+                    data:[
+                        131,
+                        109,
+                        88,
+                        71,
+                        71,
+                        60,
+                        57,
+                        53,
+                        48,
+                        43
+                    ]
+                }]    
+            },
+            options:{
+            }
+        })
+    </script>
+</body>
+</html>

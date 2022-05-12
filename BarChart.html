@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarChart</title>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+<body>
+    <div class = "container">
+        <canvas id = "myChart"></canvas>
+    </div>    
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        let Bchart = new  Chart(myChart, {
+            type: 'bar',
+            data: {
+                labels: ['Manhattan', 'Brooklyn', 'Queens', 'Bronx', 'Staten Island'],
+                datasets:[{
+                    label: 'Film Permits Issued To Boroughs',
+                    backgroundColor: ["green", "red", "blue", "yellow", "purple"],
+                    data:[
+                        35760,
+                        23291,
+                        12072,
+                        2397,
+                        966
+                    ]
+                }]    
+            },
+            options:{
+                title: {
+                    display: true,
+                    text: 'Aaron Khan'
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
