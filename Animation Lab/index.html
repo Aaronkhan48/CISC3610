@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Countdown</title>
 
+
+<!--Only thing I have left is to style it with CSS, center it and change canvas color.-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="animation.css">
+</head>
+
+<script>
+    function myFunction(){
+		Scene.sprite.frame++;
+    }
+</script>
+
+<body>
+<div id="scene" style = "text-align:center;">
+    <button onclick = "myFunction()" id="button">Start</button>
+    <script src="spritesheet.js"></script>
+    <script src="animation.js"></script>
+<canvas id="myCanvas"></canvas>
+</div>
+</body>
+</html>
