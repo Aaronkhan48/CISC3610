@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Voice Recognition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <audio id="Speak">
+        <source src="audio/Speak.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="Stop">
+        <source src="audio/Stop.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <img id = 'heart', src = "image/heart.png">
+    <img id = 'box', src = "image/square.png">
+    <img id = 'round', src = "image/circle.png"> 
+    <img id = 'triangle', src = "image/triangle.png">
+    <img id = 'diamond', src = "image/diamond.png">
+    <img id = 'qm', src = "image/qm.png">
+</head>
+
+<body style="text-align: center">
+    <h3> Voice Recognition </h3>
+       <b> Click Speak to begin voice recognition. Click Stop to stop the voice recognition. Click Cancel to cancel it. <br> </b> 
+        To interact with the program say <b> Box</b>, <b>Heart</b>, <b> Round</b>, <b> Triangle</b> or <b>Diamond</b>, <br><br>
+    <button id="button" onclick="ButtonController()">Speak</button>
+    <button id="cancel" onclick="Cancel()">Cancel</button>
+
+    <br>
+    <canvas id="myCanvas" width="800" height="600"> </canvas>
+    
+</div>
+
+</body>
+
+
+<script>
+document.getElementById('heart').style.display = "none";
+document.getElementById('box').style.display = "none";
+document.getElementById('round').style.display = "none";
+document.getElementById('triangle').style.display = "none";
+document.getElementById('diamond').style.display = "none";
+document.getElementById('qm').style.display = "none";
+var can = document.getElementById("myCanvas");
+var ctx = can.getContext("2d");
+var speak = document.getElementById("Speak");
+var stop = document.getElementById("Stop");
+
+
+var request = "";
+
+// draw canvas
+ctx.beginPath();
+    ctx.rect(0, 0, can.width, can.height);
+    ctx.fillStyle = "white";
+    ctx.fill();
+
+
+var x = document.getElementById("button");
+
+
+//Button to stop & start.
+function ButtonController() {
+    var x = document.getElementById("button");
+    if (x.innerHTML == "Speak") {
+        speak.play();
+        x.innerHTML = "Stop";
+        recognition.start();
+    } else {
+        stop.play();
+        x.innerHTML = "Speak";
+        recognition.stop();
+    }
+}
+
+function Cancel() {
+    stop.play();
+    x.innerHTML = "Speak";
+    recognition.abort();
+}
+
+var recognition = new webkitSpeechRecognition();
+recognition.continuous = false;
+recognition.interimResults = true;
+
+recognition.onresult = function (event) {
+    var x = document.getElementById("button");
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) { 
+            request = event.results[i][0].transcript;
+            stop.play();
+            x.innerHTML = "Speak";
+            recognition.stop();
+            Response();
+        }
+
+    }
+}
+var help = 
+    "If you say box, I will show a square" + 
+    "If you say heart, I will show a heart" + 
+    "If you say round, I will show a circle" + 
+    "If you say triangle, I will show a triangle"  +
+    "If you say diamond, I will show a diamond"  +
+    "If you say about, I will tell you about the program"
+var about = "Hello my name is Pooch this is the year 2022, I am a voice automated interface."
+color = "Blue Red Green Black Brown White Yellow";
+shape = "Triangle Circle Square Heart Diamond"
+
+//The apis response
+function Response() {
+    var key = request.split(" ")[0];
+    var option = request.split(" ")[1];
+    
+    if(key.localeCompare("box") == 0){
+        if (!isNaN(shape.match(/option/))) {
+            if (key.localeCompare("box") == 0) {
+                document.getElementById('qm').style.display = "none";
+                document.getElementById('diamond').style.display = "none";
+                document.getElementById('triangle').style.display = "none";
+               document.getElementById('heart').style.display = "none";
+               document.getElementById('round').style.display = "none";
+                document.getElementById('box').style.display = "inline";
+            }
+        var msg = new SpeechSynthesisUtterance("You said " + request );
+            setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+    
+        }
+    }
+       
+    else if(key.localeCompare("heart") == 0){
+        if (!isNaN(shape.match(/option/))) {
+            if (key.localeCompare("heart") == 0) {
+                document.getElementById('qm').style.display = "none";
+                document.getElementById('diamond').style.display = "none";
+               document.getElementById('triangle').style.display = "none";
+               document.getElementById('box').style.display = "none";
+               document.getElementById('round').style.display = "none";
+                document.getElementById('heart').style.display = "inline";
+            }
+        var msg = new SpeechSynthesisUtterance("You said " + request );
+            setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+    
+        }
+    }
+
+    else if(key.localeCompare("round") == 0){
+        if (!isNaN(shape.match(/option/))) {
+            if (key.localeCompare("round") == 0) {
+                document.getElementById('qm').style.display = "none";
+               document.getElementById('box').style.display = "none";
+               document.getElementById('heart').style.display = "none";
+               document.getElementById('diamond').style.display = "none";
+               document.getElementById('triangle').style.display = "none";
+               document.getElementById('round').style.display = "inline";
+            }
+        var msg = new SpeechSynthesisUtterance("You said " + request );
+        setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+        }
+    }
+
+    else if(key.localeCompare("triangle") == 0){
+        if (!isNaN(shape.match(/option/))) {
+            if (key.localeCompare("triangle") == 0) {
+                document.getElementById('qm').style.display = "none";
+               document.getElementById('box').style.display = "none";
+               document.getElementById('heart').style.display = "none";
+               document.getElementById('round').style.display = "none";
+               document.getElementById('diamond').style.display = "none";
+               document.getElementById('triangle').style.display = "inline";
+            }
+        var msg = new SpeechSynthesisUtterance("You said " + request );
+        setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+        }
+    }
+
+    else if(key.localeCompare("diamond") == 0){
+        if (!isNaN(shape.match(/option/))) {
+            if (key.localeCompare("diamond") == 0) {
+                document.getElementById('qm').style.display = "none";
+               document.getElementById('box').style.display = "none";
+               document.getElementById('heart').style.display = "none";
+               document.getElementById('round').style.display = "none";
+               document.getElementById('triangle').style.display = "none";
+               document.getElementById('diamond').style.display = "inline";
+            }
+        var msg = new SpeechSynthesisUtterance("You said " + request );
+        setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+        }
+    }
+
+    else if (key.localeCompare("about") == 0) {
+        var msg = new SpeechSynthesisUtterance(about);
+        setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+    }
+    else if (key.localeCompare("help") == 0) {
+        var msg = new SpeechSynthesisUtterance(help);
+        setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+    }
+    else {
+        document.getElementById('heart').style.display = "none";
+        document.getElementById('box').style.display = "none";
+        document.getElementById('round').style.display = "none";
+        document.getElementById('triangle').style.display = "none";
+        document.getElementById('diamond').style.display = "none";
+        document.getElementById('qm').style.display = "inline";  
+        var msg = new SpeechSynthesisUtterance("Sorry. I can not match that you said " + request);
+        setTimeout(function () { window.speechSynthesis.speak(msg); }, 1000);
+
+    }
+    console.log(request);
+    request = "";
+}
+</script>
+
+</html>
